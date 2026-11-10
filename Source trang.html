@@ -1,0 +1,422 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maycha - Trà Sữa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+
+    :root {
+      --burgundy: #800020;
+      --light-pink: #fff0f5;
+      --white: #ffffff;
+      --text-dark: #333;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      scroll-behavior: smooth;
+      background-color: var(--white);
+      color: var(--text-dark);
+    }
+    
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: var(--white);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      height: 70px;
+      width: auto;
+      max-height: 80px;
+      object-fit: contain;
+    }
+
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    
+
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--burgundy);
+      font-weight: bold;
+    }
+
+    .cart-icon {
+      font-size: 20px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    #cart-count {
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 8px;
+      font-size: 12px;
+      position: absolute;
+      top: -10px;
+      right: -10px;
+    }
+
+    .about {
+      background: url('images/about-bg.jpg') center/cover no-repeat;
+      height: 400px;
+      position: relative;
+      color: var(--white);
+    }
+
+    .about .overlay {
+      background-color: rgba(0,0,0,0.5);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .menu {
+      padding: 50px 30px;
+      background-color: var(--white);
+    }
+
+    .menu h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--burgundy);
+    }
+
+    .menu-categories {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .menu-categories button {
+      margin: 0 10px;
+      padding: 10px 15px;
+      background-color: var(--burgundy);
+      color: var(--white);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .menu-categories button.active {
+      background-color: #cc3366;
+      transform: scale(1.05);
+    }
+
+    .search-bar {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .search-bar input {
+      padding: 10px;
+      width: 300px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .product-card {
+      width: 250px;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      background-color: var(--light-pink);
+      transition: all 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .product-card button {
+      margin-top: 10px;
+      background-color: var(--burgundy);
+      color: var(--white);
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .price {
+      font-weight: bold;
+      color: var(--burgundy);
+      margin: 10px 0;
+    }
+
+    footer {
+      background-color: var(--burgundy);
+      color: var(--white);
+      text-align: center;
+      padding: 20px;
+    }
+
+    .socials a {
+      color: #ffccff;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- 🔝 Navbar -->
+  <header>
+    <nav class="navbar">
+      <img src="https://maycha.com.vn/wp-content/uploads/2023/10/logo_800x800.png" alt="Logo Maycha" class="logo"/>
+      <ul class="nav-links">
+        <li><a href="#home">Trang chủ</a></li>
+        <li><a href="#about">Giới thiệu</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#contact">Liên hệ</a></li>
+     <div class="search-bar">
+  <div style="position: relative; display: inline-block;">
+    <input type="text" id="searchInput" placeholder="Tìm sản phẩm..." style="padding: 10px 35px 10px 15px; width: 300px; border-radius: 5px; border: 1px solid #ccc;">
+    <i class="fas fa-search" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #888;"></i>
+  </div>
+</div>
+      <div class="cart-icon">
+        🛒 <span id="cart-count">0</span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 🏠 Trang chủ -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <img src="https://1900.com.vn/storage/uploads/companies/banner/8338/banner-cong-ty-co-phan-maycha-8013-1733471468.jpg" alt="Banner Maycha" style="width: 100%;">
+    </div>
+  </section>
+
+  <!-- 📖 Giới thiệu -->
+ <section id="about" class="about">
+  <div class="overlay">
+    <div class="about-content">
+      <div class="about-text">
+        <h2>Giới thiệu về chúng tôi</h2>
+        <p>Maycha được thành lập năm 2018 với cửa hàng đầu tiên tại Trịnh Đình Trọng, Tân Phú, TP. Hồ Chí Minh. Đến nay MayCha đã có mặt hầu hết các quận, huyện tại Hồ Chí Minh, Đồng Nai, Bình Dương, Đà Nẵng và các tỉnh Miền Tây. Với mục tiêu duy trì tiến độ mở mới 8 - 10 cửa hàng/tháng nhằm nhanh chóng đáp ứng nhu cầu của các bạn trẻ với niềm đam mê trà sữa trên khắp các tỉnh thành. Chúng tôi luôn sẵn sàng chào đón những ứng viên tiềm năng cùng gia nhập và phát triển Đại gia đình MayCha.</p>
+      </div>
+     </section>
+
+  <!-- 🧋 Menu -->
+  <section id="menu" class="menu">
+    <h2>Menu</h2>
+    <div class="menu-categories">
+      <button data-category="all" class="active">Tất cả</button>
+      <button data-category="tra-sua">Trà Sữa</button>
+      <button data-category="tra-trai-cay">Trà Trái Cây</button>
+      <button data-category="dac-biet">Đặc Biệt</button>
+      <button data-category="topping">Topping</button>
+    </div>
+
+        <div class="products">
+      <div class="product-card category-tra-sua">
+        <img src="https://maycha.com.vn/wp-content/uploads/2023/10/tra-sua-tran-chau-hoang-kim.png" alt="Trà Sữa Truyền Thống"/>
+        <h3>Trà Sữa Truyền Thống</h3>
+        <p>Hương vị đậm đà, thơm ngon</p>
+        <p class="price">25.000đ</p>
+        <button>Thêm vào giỏ</button>
+      </div>
+    <div class="product-card category-tra-sua">
+    <img src="https://maycha.com.vn/wp-content/uploads/2023/10/tra-sua-khoai-mon-1.png" alt="Trà Sữa Khoai Môn"/>
+    <h3>Trà Sữa Khoai Môn</h3>
+    <p>Béo thơm sánh mịn</p>
+    <p class="price">29.000đ</p>
+    <button>Thêm vào giỏ</button>
+  </div>   
+   <div class="products">
+      <div class="product-card category-tra-sua">
+        <img src="https://maycha.com.vn/wp-content/uploads/2024/01/tiramisu.png"Trà Sữa Tiramisu"/>
+        <h3>Trà Sữa Tiramisu</h3>
+        <p>Hương vị lạ miệng</p>
+        <p class="price"> 25.000đ</p>
+        <button>Thêm vào giỏ</button>
+      </div>
+     </div>
+      <div class="product-card category-tra-trai-cay">
+        <img src="https://maycha.com.vn/wp-content/uploads/2023/10/tra-thom-1.png"Trà Trái Thơm"/>
+        <h3>Trà Trái Thơm</h3>
+        <p>Mát lạnh đã khát</p>
+        <p class="price">23.000đ</p>
+        <button>Thêm vào giỏ</button>
+      </div>
+      <div class="product-card category-tra-trai-cay">
+        <img src="https://maycha.com.vn/wp-content/uploads/2023/10/tra-chanh-thanh-xuan-2-300x300.png"Trà Chanh Giã Tay"/>
+        <h3>Trà Chanh Giã Tay</h3>
+        <p>Vị chanh tươi mát lấn át nỗi buồn</p>
+        <p class="price">22.000đ</p>
+        <button>Thêm vào giỏ</button>
+      </div>
+      <div class="product-card category-tra-trai-cay">
+        <img src="https://maycha.com.vn/wp-content/uploads/2023/10/LU7U8-DO-THACH-DUA-300x300.png"Trà Đào Cam Sả"/>
+        <h3>Trà Đào Cam Sả</h3>
+        <p>Thơm mát, thanh nhẹ</p>
+        <p class="price">25.000đ</p>
+        <button>Thêm vào giỏ</button>
+       </div>
+      <div class="product-card category-dac-biet">
+        <img src="https://maycha.com.vn/wp-content/uploads/2023/10/tra-sua-pho-mai-tuoi-1.png" alt="Trà Sữa Phô Mai Tươi"/>
+        <h3>Trà Sữa Phô Mai Tươi</h3>
+        <p>Đặc biệt béo ngậy, thơm lừng</p>
+        <p class="price"> 29.000đ</p>
+        <button>Thêm vào giỏ</button>
+     </div>
+      <div class="product-card category-dac-biet">
+        <img src="https://maycha.com.vn/wp-content/uploads/2023/10/yakult-man-1.png"Plum Yakult"/>
+        <h3>Plum Yakult</h3>
+        <p>Chua chua, ngọt ngọt càng uống càng cuốn</p>
+        <p class="price"> 35.000đ</p>
+        <button>Thêm vào giỏ</button>
+       </div>
+      <div class="product-card category-dac-biet">
+        <img src="https://maycha.com.vn/wp-content/uploads/2023/10/tra-sua-matcha-dau-do.png" alt="Trà Sữa Matcha Đậu Đỏ"/>
+        <h3>Trà Sữa Matcha Đậu Đỏ</h3>
+        <p>Đặc biệt thơm matcha và hạt đậu đỏ bùi bùi</p>
+        <p class="price"> 34.000đ</p>
+        <button>Thêm vào giỏ</button>
+      </div>
+      <div class="product-card category-topping">
+        <img src="https://chapatea.vn/wp-content/uploads/2025/01/tran-chau-den-8734.jpeg" alt="Trân Châu Đen"/>
+        <h3>Trân Châu Đen</h3>
+        <p>Topping truyền thống</p>
+        <p class="price">7.000đ</p>
+        <button>Thêm vào giỏ</button>
+      </div>
+     <div class="product-card category-topping">
+        <img src="https://chapatea.vn/wp-content/uploads/2025/01/kem-trung-6088-300x300.jpeg"Pudding Trứng"/>
+        <h3>Pudding Trứng</h3>
+        <p>Mềm, béo và tan trong miệng</p>
+        <p class="price">11.000đ</p>
+        <button>Thêm vào giỏ</button>
+      </div>
+     <div class="product-card category-topping">
+        <img src="https://chapatea.vn/wp-content/uploads/2025/01/tran-chau-3520-300x300.jpeg"Trân Châu Trắng"/>
+        <h3>Trân Châu Trắng</h3>
+        <p>Dai dai giòn giòn</p>
+        <p class="price">8.000đ</p>
+        <button>Thêm vào giỏ</button>
+      </div>
+    </div>
+  </section>
+<!-- Khuyến mãi -->
+     <section id="promo" class="promo" style="padding: 50px 30px; background-color: #fff0f5;">
+  <h2 style="text-align: center; color: var(--burgundy); margin-bottom: 30px;">🎉 Khuyến Mãi Đặc Biệt</h2>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+    <div style="background: white; border-radius: 10px; padding: 20px; width: 300px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center;">
+      <h3>Giảm 20% cho đơn hàng đầu tiên</h3>
+      <p>Áp dụng khi đặt hàng online qua website.</p>
+      <p><strong>HSD: 1/10/2025</strong></p>
+    </div>
+    <div style="background: white; border-radius: 10px; padding: 20px; width: 300px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center;">
+      <h3>Mua 2 tặng 1</h3>
+      <p>Áp dụng cho tất cả các loại trà sữa vào thứ 6 hàng tuần.</p>
+      <p><strong>HSD: 15/7/2025</strong></p>
+    </div>
+  </div>
+</section>
+<!-- Đánh giá-->
+<section id="reviews" class="reviews" style="padding: 50px 30px; background-color: #f9f9f9;">
+  <h2 style="text-align: center; color: var(--burgundy); margin-bottom: 30px;">💬 Đánh Giá Khách Hàng</h2>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+    <div style="background: white; border-radius: 10px; padding: 20px; width: 300px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <p>"Trà sữa ngon, topping phong phú, nhân viên dễ thương!"</p>
+      <p><strong>- Linh Nguyễn -</strong></p>
+    </div>
+    <div style="background: white; border-radius: 10px; padding: 20px; width: 300px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <p>"Không gian quán sạch sẽ, đặt hàng online giao nhanh."</p>
+      <p><strong>- Minh Trí -</strong></p>
+    </div>
+    <div style="background: white; border-radius: 10px; padding: 20px; width: 300px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <p>"Maycha là quán ruột của mình mỗi chiều tan làm!"</p>
+      <p><strong>- Hồng Anh -</strong></p>
+    </div>
+  </div>
+</section>   
+ <!-- 📍 Liên hệ -->
+<section id="contact" class="contact">
+  <h2>Thông Tin Liên Hệ</h2>
+  <p><strong>Địa chỉ:</strong> 21 Rạch Bùng Binh, Phường 10, Quận 3, TP. Hồ Chí Minh</p>
+  <p><strong>Hotline:</strong> 0909 999 999</p>
+  <p><strong>Email:</strong> cskh@maycha.vn</p>
+
+  <h2>Địa chỉ công ty Cổ phần MayCha</h2>
+  <p><strong>Địa chỉ:</strong> 38 Trịnh Đình Trọng, Phường Phú Trung, Quận Tân Phú, TP. Hồ Chí Minh</p>
+  <p><strong>MST:</strong> 0317701572</p>
+  <p><strong>Email:</strong> maychaxinchao@maycha.com.vn</p>
+
+  <div class="map">
+    <iframe src="https://maps.google.com/maps?q=ho%20chi%20minh&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            width="100%" height="300" style="border:0;" allowfullscreen></iframe>
+  </div>
+</section>
+
+  <!-- 📑 Footer -->
+  <footer>
+  <p>&copy; 2025 Maycha. Bản quyền thuộc về Công ty Cổ phần Maycha.</p>
+  <div class="socials">
+    <a href="https://www.facebook.com/maycha.official" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.instagram.com/maycha.official" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="mailto:info@maycha.com.vn"><i class="fas fa-envelope"></i></a>
+  </div>
+</footer>
+  <script>
+  const buttons = document.querySelectorAll('.menu-categories button');
+  const products = document.querySelectorAll('.product-card');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.getAttribute('data-category');
+
+      // Hiển thị sản phẩm theo danh mục
+      products.forEach(product => {
+        if (category === 'all') {
+          product.style.display = 'block';
+        } else {
+          product.style.display = product.classList.contains(`category-${category}`) ? 'block' : 'none';
+        }
+      });
+
+      // Làm nổi bật nút đang chọn
+      buttons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
